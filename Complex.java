@@ -48,17 +48,17 @@ class Complex {
 
 
 	    case 2:
-		//	c.Subtraction(ob1,ob2);
+			c.Subtraction(ob1,ob2);
 	    break;
 
 
 	    case 3:
-		//	c.Multiplication(ob1, ob2);
+			c.Multiplication(ob1, ob2);
 	    break;
 
 
 	    case 4:
-		//c.Division(ob1,ob2);
+		c.Division(ob1,ob2);
 	    break;
 	    
 	
@@ -79,7 +79,7 @@ class Complex {
 
 class Complexop{
 
-    int real, imag;
+    float real, imag;
 
 
     Complexop(){
@@ -90,7 +90,7 @@ class Complexop{
 
     }
 
-    Complexop (int real,int imag){
+    Complexop (float real,float  imag){
 
 	this.real = real;
 	this.imag = imag;
@@ -107,6 +107,42 @@ class Complexop{
 
 	System.out.println("Addition is: " + this.real + "+" + this.imag + "i");
 
+
+
+    }
+
+
+    void Subtraction ( Complexop c1 , Complexop c2){
+
+
+	this.real = c1.real - c2.real;
+	this.imag = c1.imag - c2.imag;
+
+	System.out.println("Subtraction is: " + this.real + "+" + this.imag + "i");
+	
+
+
+
+    }
+
+    void Multiplication ( Complexop c1, Complexop c2){
+
+	this.real = (c1.real * c2.real) - ( c1.imag * c2.imag);
+	this.imag = (c1.real * c2.imag) + ( c1.imag * c2.real);
+
+	System.out.println("Multiplication is " + this.real + "+" + this.imag + "i");
+
+
+
+    }
+
+
+    void Division ( Complexop c1, Complexop c2){
+
+	this.real = ((c1.real)*(c2.real) + (c1.imag)*(c2.imag))/((c2.real)*(c2.real) + (c2.imag)*(c2.imag));
+	this.imag = ((c1.imag)*(c2.real) - (c1.real)*(c2.imag))/((c2.real)*(c2.real) + (c2.imag)*(c2.imag));
+
+       	System.out.println("Division is " + this.real + "+" + this.imag + "i");
 
 
     }
