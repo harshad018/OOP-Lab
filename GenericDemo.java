@@ -1,12 +1,11 @@
-package genericdemo;
+
 
 import java.util.*;
 import java.io.*;
 import java.lang.*;
 
 public class GenericDemo {
-	
-	
+
 	static boolean isPrime( int num) {
 		int flag = 0;
 		for ( int i = 2; i < num ;i++) {
@@ -26,13 +25,10 @@ public class GenericDemo {
 		
 		return false;
 		
-		
 	}
 	
 	static boolean isEven( int num) {
-		
-		
-		
+	
 		if ( num%2 == 0) {
 			
 			return true;
@@ -43,14 +39,10 @@ public class GenericDemo {
 			
 			return false;
 		}
-		
-		
 	}
 	
 static boolean isOdd( int num) {
-		
-		
-		
+	
 		if ( num%2 == 0) {
 			
 			return false;
@@ -62,11 +54,8 @@ static boolean isOdd( int num) {
 			return true;
 		}
 		
-		
 	}
-	
-	
-	
+
 	static <T> void count(String type, T[] el) {
 		
 		int even = 0, odd = 0, prime = 0, palin = 0;
@@ -125,10 +114,7 @@ static boolean isOdd( int num) {
 			}
 			System.out.println("Total Palindrome:"+ palin);
 		}
-		
-		
-		
-		
+	
 	} 
 
 	public static void main(String[] args) {
@@ -143,4 +129,12 @@ static boolean isOdd( int num) {
 	}
 
 }
+
+--------------------------------------------------------------------------------------
+Output:
+Total even:5
+Total even:5
+Total odd:4
+Total prime:3
+Total Palindrome:2
 
