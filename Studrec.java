@@ -10,8 +10,8 @@ class Studrec {
 		Studrec sr = new Studrec();
 		int ch;
 		do {
-		
-			System.out.println("1.Add rec \n 2.Display \n 3.delete \n 4.Update rec \n 5.clear rec \n  6.search \n Enter your choice " );
+			System.out.println("******************************Menu***************************");
+			System.out.print("1.Add record \n2.Display record \n3.delete record \n4.Update record \n5.clear record \n6.search record \n7.Exit \nEnter your choice: " );
 			
 			
 			 ch = Integer.parseInt(br.readLine());
@@ -24,22 +24,24 @@ class Studrec {
 				case 2: sr.displayrec();
 				break;
 				
-				/*case 3: sr.deleterec();
+				case 3: sr.deleterec();
 				break;
 				
-				case 4:sr.updaterec();		
-				break;
+				//case 4:sr.updaterec();		
+				//break;
 				
 				case 5:sr.clearrec();
 				break;
 				
 				case 6: sr. search();
-				break;*/
+				break;
+				
+				
 			
 			}
 		
 		
-		} while ( ch < 6);
+		} while ( ch < 7);
 		
 	
 	}
@@ -93,6 +95,118 @@ void displayrec() throws IOException{
 		System.out.println(e);
 	
 	}
+
+
+}
+
+void clearrec() throws IOException {
+
+	PrintWriter pw = new PrintWriter( new BufferedWriter( new FileWriter("Studrec.txt")));
+	
+	pw.close();
+	
+	System.out.println("All the data cleared out successfully");
+
+}
+
+void deleterec() throws IOException {
+
+	try{
+	
+		BufferedReader f1 = new BufferedReader( new FileReader ("Studrec.txt"));
+		
+		PrintWriter pw = new PrintWriter( new BufferedWriter( new FileWriter("new.txt")));
+		String rec; int flag = 0;
+		Scanner s = new Scanner (System.in);
+		
+		System.out.print("Enter the student name that you want to delete: ");
+		String searchname = s.next();
+		while ( (rec = f1.readLine()) != null){
+		
+			String [] line = rec.split(" ");
+			
+			if ( !searchname.equalsIgnoreCase(line[0])){
+			
+				pw.println(rec);
+				flag =0;
+			
+			}
+			else{
+			
+				System.out.println("Record deleted successfully");
+				flag =1;
+			}
+		
+		
+		
+		}
+	
+		f1.close();
+		pw.close();
+		
+		File delfile = new File("Studrec.txt");
+		File oldfile = new File("new.txt");
+		File newfile =  new File("Studrec.txt");
+		
+		if ( delfile.delete()){
+		
+			System.out.println("Old file deleted successfully");
+		}
+		else {
+		
+			System.out.println("Error Occured during the process");
+		}
+		
+		if ( oldfile.renameTo(newfile)){
+		
+			System.out.println("File renamed successfully");
+		}
+		else{
+			System.out.println("Error occured during the process");
+		}
+	
+	
+	}
+	
+	catch( FileNotFoundException e){
+	
+		System.out.println(e);
+	}
+			
+	
+
+}
+
+void search() throws IOException{
+
+	try{
+	
+		BufferedReader f1 = new BufferedReader( new FileReader ("Studrec.txt"));
+		
+		
+		String rec; int flag = 0;
+		Scanner s = new Scanner (System.in);
+		
+		System.out.print("Enter the student name that you want to search: ");
+		String searchname = s.next();
+		while ( (rec = f1.readLine()) != null){
+		
+			String [] line = rec.split(" ");
+			
+			if ( searchname.equalsIgnoreCase(line[0])){
+			
+				System.out.println(rec);
+				System.out.println("FOUND");
+			}
+			
+	}
+	
+	}
+	catch(FileNotFoundException e){
+	
+		System.out.println(e);
+	}
+
 
 
 }
