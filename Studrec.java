@@ -27,8 +27,8 @@ class Studrec {
 				case 3: sr.deleterec();
 				break;
 				
-				//case 4:sr.updaterec();		
-				//break;
+				case 4:sr.updaterec();		
+				break;
 				
 				case 5:sr.clearrec();
 				break;
@@ -59,9 +59,12 @@ void addRec() throws IOException {
 		name = br.readLine();
 		sid = Integer.parseInt(br.readLine());
 		rollno = Integer.parseInt(br.readLine());
-		sclass = br.readLine();
-		marks = Integer.parseInt(br.readLine());
 		addr = br.readLine();
+		sclass = br.readLine();
+		
+		
+		marks = Integer.parseInt(br.readLine());
+		
 		
 		pw.println(name + " " + sid+" " + rollno+" "+addr+" "+sclass+" "+marks);
 		
@@ -184,7 +187,7 @@ void search() throws IOException{
 		BufferedReader f1 = new BufferedReader( new FileReader ("Studrec.txt"));
 		
 		
-		String rec; int flag = 0;
+		String rec; 
 		Scanner s = new Scanner (System.in);
 		
 		System.out.print("Enter the student name that you want to search: ");
@@ -199,6 +202,7 @@ void search() throws IOException{
 				System.out.println("FOUND");
 			}
 			
+			
 	}
 	
 	}
@@ -206,6 +210,75 @@ void search() throws IOException{
 	
 		System.out.println(e);
 	}
+
+
+
+}
+
+void updaterec() throws IOException{
+
+	try{
+	
+		BufferedReader f1 = new BufferedReader( new FileReader ("Studrec.txt"));
+		
+		PrintWriter pw = new PrintWriter( new BufferedWriter( new FileWriter("new.txt")));
+		String rec; int flag = 0;
+		Scanner s = new Scanner (System.in);
+		
+		System.out.print("Enter the student name that you want to update: ");
+		String searchname = s.next();
+		while ( (rec = f1.readLine()) != null){
+		
+			String [] line = rec.split(" ");
+			
+			if ( !searchname.equalsIgnoreCase(line[0])){
+			
+				pw.println(rec);
+				flag =0;
+			
+			}
+			else{
+				System.out.println("Record Found");
+				System.out.println("Enter updated marks");
+				String upmarks = s.next();
+				pw.println(line[0]+" " + line[1]+" " + line[2] + " " + line[3] + " " + line[4]+ " " + upmarks);
+				flag = 1;
+			}
+		
+		
+		
+		}
+		f1.close();
+		pw.close();
+		
+		File delfile = new File("Studrec.txt");
+		File oldfile = new File("new.txt");
+		File newfile =  new File("Studrec.txt");
+		
+		if ( delfile.delete()){
+		
+			System.out.println("Old file deleted successfully");
+		}
+		else {
+		
+			System.out.println("Error Occured during the process");
+		}
+		
+		if ( oldfile.renameTo(newfile)){
+		
+			System.out.println("File renamed successfully");
+		}
+		else{
+			System.out.println("Error occured during the process");
+		}
+	
+		}
+		catch ( FileNotFoundException e){
+		
+			System.out.println(e);
+		}
+
+
 
 
 
